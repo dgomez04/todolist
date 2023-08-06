@@ -11,9 +11,10 @@
     height: 100vh;
 }
 
-.projects {
+#projects {
     display: flex;
     flex-direction: column;
+    gap: 5px;
 }
 
 .project {

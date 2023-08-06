@@ -14,19 +14,19 @@
             
             <div class="projectscontainer">
                 <h4>Projects</h4>
-                <div class="projects"> 
+                <div id="projects"> 
                     <!--add projects dinamically-->
                     <span class="project"><img class="projectimage" src="./img/project.svg" alt=""> <a href="#">project one</a></span>
                     <span class="project"><img class="projectimage" src="./img/project.svg" alt=""> <a href="#">project two</a></span>
                     <span class="project"><img class="projectimage" src="./img/project.svg" alt=""> <a href="#">project three</a></span>
-                    
-                    <div id="createproject">
+                </div>
+
+                    <form id="create-project" method="post">
                         <input type="text" name="projectname" id="projectname">
                         <button type="submit">Add</button>
                         <button type="reset">Cancel</button>
-                    </div>
+                    </form>
 
-                </div>
             </div>
         </div> 
     </div>
