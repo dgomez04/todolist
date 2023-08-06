@@ -1,0 +1,38 @@
+* {
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    width: 100vw;
+    height: 100vh;
+}
+
+.projects {
+    display: flex;
+    flex-direction: column;
+}
+
+.project {
+    display: inline-flex;    
+    align-items: center;
+    gap: 8px;
+}
+
+.projectimage {
+    width: 25px;
+    height: 25px;
+}
+.sidebar {
+    grid-area: 1;
+    background-color: pink;
+    padding: 20px 0px 0px 20px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
