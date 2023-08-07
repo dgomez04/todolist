@@ -1,5 +1,6 @@
 
 // this module handles all interaction with local storage
+import  Project from './projects';
 
 // saves a project to local storage
 export function saveProject(key, project) {
@@ -34,7 +35,7 @@ export function removeProject(key) {
 }
 
 /// function to create a project object based from JSON data.
-function JSONtoProject(jsonData) { 
+export function JSONtoProject(jsonData) { 
     const data = JSON.parse(jsonData);
     let project = new Project(data.name);
     project.tasks = data.tasks;
