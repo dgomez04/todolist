@@ -2,6 +2,8 @@
 // module imports
 import  Project from './projects';
 
+import { v4 as uuidv4 } from 'uuid'; 
+
 import { saveProject, loadAllProjects} from './fileStorage';
 
 // add event listener to create project button
@@ -12,12 +14,16 @@ document.getElementById('create-project').addEventListener('click', (e) => {
 
         //check if projectname is empty
         if(projectname != '') {
-            const project = new Project(projectname); // create project object
-            addProjectElement(project); // adds project to dom
-            saveProject(project.name, project); // save project to local storage
+            const projectid = uuidv4(); 
+            const project = new Project(projectid, projectname); // create project object
+            console.log('Project Data:', project);
+            addProjectElement(project); // add project to the DOM
+            saveProject(projectid, project) // save project to local storage
         }
     }
 });
+
+
 
 // runs and looks up on local storage and loads all projects
 export function loadProjectElements() {
@@ -32,13 +38,21 @@ export function loadProjectElements() {
  function addProjectElement(project) {
     const projectList = document.getElementById('projects');
     const projectElement = document.createElement('span');
+
+    projectElement.setAttribute('id', project.id);
+    projectElement.setAttribute('name', project.name);
     projectElement.classList.add('project');
 
     projectElement.innerHTML = `
-    <span class="project"><img class="projectimage" src="./img/project.svg" alt=""> 
-    <a href="#">${project.name}</a></span>
+    <img class="projectimage" src="./img/project.svg" alt=""> 
+    <a href="#">${project.name}</a>
     `
     projectList.appendChild(projectElement);
 }
 
+
+// create a function that when a project is clicked, display the project name in the on the screen and the add task button.
+function displayProject(project) {
+    
+}
 

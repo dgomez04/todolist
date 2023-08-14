@@ -37,7 +37,7 @@ export function removeProject(key) {
 /// function to create a project object based from JSON data.
 export function JSONtoProject(jsonData) { 
     const data = JSON.parse(jsonData);
-    let project = new Project(data.name);
+    let project = new Project(data.id, data.name);
     project.tasks = data.tasks;
     return project;
 }
