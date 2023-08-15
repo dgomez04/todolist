@@ -19,6 +19,13 @@ export function loadAllProjects() {
     return projects;
 }
 
+// saves a task to project json
+export function saveTask(projectid, task) {
+    const project = JSONtoProject(localStorage.getItem(projectid));
+    project.tasks.push(task);
+    saveProject(projectid, project);
+}
+
 //load all tasks from a project
 export function loadAllTasks(project) {
     let tasks = [];
@@ -28,6 +35,7 @@ export function loadAllTasks(project) {
     }
     return tasks;
 }
+
 
 // removes a project from local storage
 export function removeProject(key) {

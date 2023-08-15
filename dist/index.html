@@ -27,8 +27,12 @@
             </div>
         </div> 
 
-        <div class="maincontainer">
-            <span>hello</span>
+        <div class="maincontainer"> <!-- make it so that it saves the project id somewhere here-->
+            <form id="create-task" method="post">
+                <input type="text" name="taskname" id="taskname">
+                <button type="submit">Add</button>
+                <button type="reset">Cancel</button>
+            </form>
         </div>
     </div>
 </body>
