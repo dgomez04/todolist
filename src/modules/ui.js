@@ -1,6 +1,6 @@
 
 // module imports
-import { loadAllProjects} from './fileStorage';
+import { loadAllProjects, loadProject} from './fileStorage';
 
 // runs and looks up on local storage and loads all projects
 export function loadProjectElements() {
@@ -40,15 +40,37 @@ export function displayProject(projectname, projectid) {
 
 }
 
-// TO DO: add task to DOM
-export function addTaskElement() {
-    
-
-    const tasktitle = document.getElementById('tasktitle').value;
-    const taskdescription = document.getElementById('taskdescription').value;
-    const taskpriority = document.getElementById('taskpriority').value;
-    const taskdate = document.getElementById('taskdate').value;
-
-    const task = new Task(tasktitle, taskdescription, taskpriority, taskdate);
+// load task elements from local storage based on the JSON key
+export function loadTaskElements(projectid) {
+    const project = loadProject(projectid);
+    if(project) {
+        const tasks = project.tasks;
+        for (let i = 0; i < tasks.length; i++) {
+            const task = tasks[i];
+            addTaskElement(task);
+        }
+    }
 }
 
+
+// add task to DOM
+
+export function addTaskElement(task) {
+    const taskList = document.getElementById('tasks');
+    const taskElement = document.createElement('span');
+
+    taskElement.setAttribute('id', task.id);
+    taskElement.setAttribute('name', task.title);
+    taskElement.classList.add('task');
+
+    taskElement.innerHTML = `
+    <h3>${task.title}</h3>
+    <p>${task.description}</p>
+    <p>${task.priority}</p>
+    <p>${task.dueDate}</p>
+    `
+    taskList.appendChild(taskElement);
+}
+
+// make a module to make opacity of create tasks from 0 to 1 when the first project is clicked
+// in order to avoid tasks with no project assigned to them

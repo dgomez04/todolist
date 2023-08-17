@@ -36,14 +36,14 @@ export function saveTask(projectid, task) {
     }
 }
 
-// function to create a project object based from JSON data.
+// create a project object based from JSON data.
 export function JSONtoProject(jsonData) { 
     try {
         const data = JSON.parse(jsonData);
         const project = new Project(data.id, data.name);
         project.tasks = data.tasks;
         return project;
-    } catch (error) {
+    } catch (error) { 
         console.error('Error parsing JSON data:', error);
         return null;
     }

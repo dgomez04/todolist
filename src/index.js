@@ -2,8 +2,8 @@ import './styles.css';
 
 // module imports
 import  Project from './modules/projects';
-import { saveProject, loadProject, saveTask } from './modules/fileStorage';
-import { addProjectElement, displayProject, loadProjectElements } from './modules/ui';
+import { saveProject, saveTask } from './modules/fileStorage';
+import { addProjectElement, addTaskElement, displayProject, loadProjectElements, loadTaskElements } from './modules/ui';
 import { v4 as uuidv4 } from 'uuid'; 
 
 
@@ -34,10 +34,16 @@ document.getElementById('projects').addEventListener('click', (e) => {
         const projectname = project.getAttribute('name');
         const projectid = project.getAttribute('id');
         displayProject(projectname, projectid);
+
+        // clear task elements before loading
+        const taskList = document.getElementById('tasks');
+        taskList.innerHTML = '';
+
+        loadTaskElements(projectid); //load saved tasks from local storage
     }
 });
 
-// wip : creating a task and saving it to local storage
+// creating a task and saving it to local storage
 document.getElementById('create-task').addEventListener('click', (e) => {
     if(e.target.tagName === 'BUTTON' && e.target.type === 'submit') {
         e.preventDefault();
@@ -46,9 +52,7 @@ document.getElementById('create-task').addEventListener('click', (e) => {
         const taskpriority = document.getElementById('taskpriority').value.trim();
         const taskdate = document.getElementById('taskdate').value.trim();
         const taskproject = document.getElementById('taskproject').value.trim();
-
-        // to do: check that taskproject.value is not empty in order to save task, else it will give errors
-
+        
         // check if taskname is empty
         if(tasktitle != '') {
             const taskid = uuidv4();
@@ -61,6 +65,7 @@ document.getElementById('create-task').addEventListener('click', (e) => {
             }
 
             saveTask(taskproject, task); //save task on project json
+            addTaskElement(task); // add task to DOM
         }
     }
 });
