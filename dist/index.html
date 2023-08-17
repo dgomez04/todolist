@@ -28,8 +28,21 @@
         </div> 
 
         <div class="maincontainer"> <!-- make it so that it saves the project id somewhere here-->
+            <h1 id="project-title"></h1>
+            <div id="tasks">
+                <!--add tasks dinamically-->
+            </div>
             <form id="create-task" method="post">
-                <input type="text" name="taskname" id="taskname">
+                <input type="hidden" name="taskproject" id="taskproject">
+                <input type="text" name="tasktitle" id="tasktitle">
+                <input type="text" name="taskdescription" id="taskdescription">
+                <!-- make a select button with options low, medium, and high for priority-->
+                <select name="taskpriority" id="taskpriority">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+                <input type="date" name="taskdate" id="taskdate">
                 <button type="submit">Add</button>
                 <button type="reset">Cancel</button>
             </form>

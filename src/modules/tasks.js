@@ -2,7 +2,8 @@
 export default class Task {
 
     // a class should have a title, description, dueDate and priority
-    constructor(title, description, priority, dueDate) {
+    constructor(id, title, description, priority, dueDate) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.priority = priority;

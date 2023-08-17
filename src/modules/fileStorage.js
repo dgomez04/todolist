@@ -8,6 +8,12 @@ export function saveProject(key, project) {
     localStorage.setItem(key, json);
 }
 
+// load project from local storage based on key
+export function loadProject(key) {
+    const project = JSONtoProject(localStorage.getItem(key));
+    return project;
+}
+
 // loads all projects from local storage
 export function loadAllProjects() {
     let projects = [];
