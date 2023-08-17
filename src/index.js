@@ -2,7 +2,7 @@ import './styles.css';
 
 // module imports
 import  Project from './modules/projects';
-import { saveProject, loadProject } from './modules/fileStorage';
+import { saveProject, loadProject, saveTask } from './modules/fileStorage';
 import { addProjectElement, displayProject, loadProjectElements } from './modules/ui';
 import { v4 as uuidv4 } from 'uuid'; 
 
@@ -47,14 +47,7 @@ document.getElementById('create-task').addEventListener('click', (e) => {
         const taskdate = document.getElementById('taskdate').value.trim();
         const taskproject = document.getElementById('taskproject').value.trim();
 
-
-        // debugging 
-        console.log("tasktitle:", tasktitle);
-        console.log("taskdescription:", taskdescription);
-        console.log("taskpriority:", taskpriority);
-        console.log("taskdate:", taskdate);
-        console.log("taskproject:", taskproject);
-
+        // to do: check that taskproject.value is not empty in order to save task, else it will give errors
 
         // check if taskname is empty
         if(tasktitle != '') {
@@ -67,13 +60,7 @@ document.getElementById('create-task').addEventListener('click', (e) => {
                 dueDate: taskdate
             }
 
-            // get project using loadproject, then add task to project
-            const project = loadProject(taskproject);
-            project.addTask(task);
-            // save the project
-            saveProject(taskproject, project);
-            console.log("added task to local storage")
-
+            saveTask(taskproject, task); //save task on project json
         }
     }
 });

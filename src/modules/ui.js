@@ -40,13 +40,9 @@ export function displayProject(projectname, projectid) {
 
 }
 
-// function to add a task based on the create-task form
+// TO DO: add task to DOM
 export function addTaskElement() {
-    // get the form values
-    // create a task object
-    // add the task to the project
-    // save the project
-    // add the task to the DOM
+    
 
     const tasktitle = document.getElementById('tasktitle').value;
     const taskdescription = document.getElementById('taskdescription').value;

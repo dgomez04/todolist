@@ -4,42 +4,21 @@ import  Project from './projects';
 
 // saves a project to local storage
 export function saveProject(key, project) {
-    const json = JSON.stringify(project);
-    localStorage.setItem(key, json);
+    localStorage.setItem(key, JSON.stringify(project));
 }
 
 // load project from local storage based on key
-export function loadProject(key) {
-    const project = JSONtoProject(localStorage.getItem(key));
-    return project;
+export function loadProject(projectid) {
+    const jsonData = localStorage.getItem(projectid);
+    if (jsonData) {
+        return JSONtoProject(jsonData);
+    }
+    return null; // handle case where project doesn't exist
 }
 
 // loads all projects from local storage
 export function loadAllProjects() {
-    let projects = [];
-    for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
-        const project = JSONtoProject(localStorage.getItem(key));
-        projects.push(project);
-    }
-    return projects;
-}
-
-// saves a task to project json
-export function saveTask(projectid, task) {
-    const project = JSONtoProject(localStorage.getItem(projectid));
-    project.tasks.push(task);
-    saveProject(projectid, project);
-}
-
-//load all tasks from a project
-export function loadAllTasks(project) {
-    let tasks = [];
-    for (let i = 0; i < project.tasks.length; i++) {
-        const task = project.tasks[i];
-        tasks.push(task);
-    }
-    return tasks;
+    return Object.keys(localStorage).map(key => loadProject(key));
 }
 
 
@@ -48,11 +27,24 @@ export function removeProject(key) {
     localStorage.removeItem(key);
 }
 
-/// function to create a project object based from JSON data.
-export function JSONtoProject(jsonData) { 
-    const data = JSON.parse(jsonData);
-    let project = new Project(data.id, data.name);
-    project.tasks = data.tasks;
-    return project;
+// saves a task to project json
+export function saveTask(projectid, task) {
+    const project = loadProject(projectid);
+    if(project) { // check if project exists
+        project.addTask(task);
+        saveProject(projectid, project);
+    }
 }
 
+// function to create a project object based from JSON data.
+export function JSONtoProject(jsonData) { 
+    try {
+        const data = JSON.parse(jsonData);
+        const project = new Project(data.id, data.name);
+        project.tasks = data.tasks;
+        return project;
+    } catch (error) {
+        console.error('Error parsing JSON data:', error);
+        return null;
+    }
+}
