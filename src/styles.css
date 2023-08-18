@@ -1,5 +1,6 @@
+
 * {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -11,10 +12,28 @@
     height: 100vh;
 }
 
+
+#app-title {
+    background: linear-gradient(to right, #3393d9 0%, #3393d9 0%, #3393d9 21%, #3282a9 52%, #285a73 78%, #285a73 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    font-size: 58px;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+}
+
+.project-text {
+    color:  #333333;
+    font-size: 25px;
+    font-weight: 500;
+}
+
 #projects {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
 .project {
@@ -34,13 +53,11 @@
     align-items: center;
     gap: 8px;
 }
-.projectimage {
-    width: 25px;
-    height: 25px;
-}
+
 .sidebar {
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     grid-column: 1;
-    background-color: pink;
     padding: 20px 0px 0px 20px;
 }
 
@@ -97,6 +114,51 @@ a {
     margin-bottom: 5px;
 }
 
+#create-project {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
 
+.project-buttons {
+    display: inline-flex;
+    gap: 10px;
+}
 
+#projectname {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
 
+#projectname:focus {
+    outline: none;
+    border-color: #0074d9;
+}
+
+#create-project button {
+    background: linear-gradient(to right, #0074d9, #2e88c1);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+#create-project button[type="reset"] {
+    background: linear-gradient(to right, #ccc, #999);
+    color: #333;
+    margin-left: 5px;
+}
+
+#create-project button:hover {
+    background: linear-gradient(to right, #0056b3, #2e73a3);
+}
+
+#create-project button[type="reset"]:hover {
+    background: linear-gradient(to right, #999, #666);
+}

@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="main.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500&display=swap" rel="stylesheet">
     <title>todo list</title>
 </head>
 <body>
     <!-- create a container, make a sidebar-->
     <div class="container">
         <div class="sidebar">
-            <h1>todo list</h1>
+            <h1 id="app-title">todo list</h1>
             
             <div class="projectscontainer">
-                <h4>Projects</h4>
                 <div id="projects"> 
                     <!--add projects dinamically-->
                     
@@ -21,8 +23,10 @@
 
                     <form id="create-project" method="post">
                         <input type="text" name="projectname" id="projectname">
-                        <button type="submit">Add</button>
-                        <button type="reset">Cancel</button>
+                        <div class="project-buttons">
+                            <button type="submit">Add</button>
+                            <button type="reset">Cancel</button> 
+                        </div>
                     </form>
             </div>
         </div> 

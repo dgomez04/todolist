@@ -1,6 +1,9 @@
 
 // module imports
-import { loadAllProjects, loadProject, removeTask} from './fileStorage';
+import  Project from './projects';
+import { loadAllProjects, loadProject, removeTask, saveTask, saveProject} from './fileStorage';
+import { v4 as uuidv4 } from 'uuid'; 
+
 
 // runs and looks up on local storage and loads all projects
 export function loadProjectElements() {
@@ -22,7 +25,7 @@ export function loadProjectElements() {
 
     projectElement.innerHTML = `
     <img class="projectimage" src="./img/project.svg" alt=""> 
-    <a href="#">${project.name}</a>
+    <a class="project-text" href="#">${project.name}</a>
     `
     projectList.appendChild(projectElement);
 }
@@ -31,12 +34,10 @@ export function loadProjectElements() {
 export function displayProject(projectname, projectid) {
     const projectTitle = document.getElementById('project-title');
     projectTitle.textContent = projectname;
-    console.log("Displaying: " + projectname)
 
     // save project id as an input hidden in the create-task forms
     const taskproject = document.getElementById('taskproject');
     taskproject.value = projectid;
-    console.log("Task project: " + projectid);
 
 }
 
@@ -140,6 +141,7 @@ document.getElementById('create-task').addEventListener('click', (e) => {
 //eventListener to remove task from DOM and local storage
 document.getElementById('tasks').addEventListener('click', (e) => {
     if (e.target.classList.contains('remove-task')) {
+        e.preventDefault(); //prevents form resubmission
         const task = e.target.closest('.task'); // get closest task element
         const taskid = task.getAttribute('id');
         const taskproject = document.getElementById('taskproject').value.trim();
@@ -158,6 +160,7 @@ const closeButton = modal.querySelector('.close');
 
 document.getElementById('tasks').addEventListener('click', (e) => {
     if (e.target.classList.contains('modalbutton')) {
+        e.preventDefault(); //prevents form resubmission
         const taskelement = e.target.closest('.task'); // get closest task element
     
         modalTitle.textContent = taskelement.dataset.tasktitle;
@@ -170,9 +173,9 @@ document.getElementById('tasks').addEventListener('click', (e) => {
 });
 
 // close task modal event listener
-closeButton.addEventListener('click', () => {
+closeButton.addEventListener('click', (e) => {
+    e.preventDefault(); // Prevents form resubmission
     modal.style.display = 'none';
 });
-
 
 
