@@ -79,18 +79,14 @@ const closeButton = modal.querySelector('.close');
 
 document.getElementById('tasks').addEventListener('click', (e) => {
     if (e.target.classList.contains('modalbutton')) {
-        const taskElement = e.target.closest('.task');
-        const taskTitle = taskElement.querySelector('h3 a').textContent;
-        const taskDescription = taskElement.dataset.taskdescription;
-        const taskPriority = taskElement.dataset.taskpriority;
-        const taskDueDate = taskElement.querySelector('p').textContent;
+        const taskelement = e.target.closest('.task'); // get closest task element
+    
+        modalTitle.textContent = taskelement.dataset.tasktitle;
+        modalDescription.textContent = `Description: ${taskelement.dataset.taskdescription}`;
+        modalPriority.textContent = `Priority: ${taskelement.dataset.taskpriority}`;
+        modalDueDate.textContent = `Due Date: ${taskelement.dataset.taskduedate}`;
 
-        modalTitle.textContent = taskTitle;
-        modalDescription.textContent = `Description: ${taskDescription}`;
-        modalPriority.textContent = `Priority: ${taskPriority}`;
-        modalDueDate.textContent = `Due Date: ${taskDueDate}`;
-
-        modal.style.display = 'block';
+        modal.style.display = 'block'; // show modal
     }
 });
 

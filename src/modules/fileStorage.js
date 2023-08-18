@@ -36,6 +36,16 @@ export function saveTask(projectid, task) {
     }
 }
 
+// removes a task from project json
+export function removeTask(projectid, taskid) {
+    const project = loadProject(projectid);
+    if(project) { // check if project exists
+        project.removeTask(taskid);
+        saveProject(projectid, project);
+    }
+}
+
+
 // create a project object based from JSON data.
 export function JSONtoProject(jsonData) { 
     try {

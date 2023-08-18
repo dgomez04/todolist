@@ -1,6 +1,6 @@
 
 // module imports
-import { loadAllProjects, loadProject} from './fileStorage';
+import { loadAllProjects, loadProject, removeTask} from './fileStorage';
 
 // runs and looks up on local storage and loads all projects
 export function loadProjectElements() {
@@ -53,22 +53,33 @@ export function loadTaskElements(projectid) {
 }
 
 
-// add task to DOM
-
+// add task to DOM 
 export function addTaskElement(task) {
     const taskList = document.getElementById('tasks');
     const taskElement = document.createElement('span');
 
     taskElement.setAttribute('id', task.id);
     taskElement.setAttribute('name', task.title);
+    taskElement.setAttribute('data-tasktitle', task.title);
+    taskElement.setAttribute('data-taskduedate', task.dueDate); 
     taskElement.setAttribute('data-taskdescription', task.description);
     taskElement.setAttribute('data-taskpriority', task.priority); 
     taskElement.classList.add('task');
-
     taskElement.innerHTML = `
     <h3><a href=# class="modalbutton">${task.title}</a></h3>
     <p>${task.dueDate}</p>
+    <button class="remove-task">Remove</button>
     `
     taskList.appendChild(taskElement);
 }
 
+//eventListener to remove task from DOM and local storage
+document.getElementById('tasks').addEventListener('click', (e) => {
+    if (e.target.classList.contains('remove-task')) {
+        const task = e.target.closest('.task'); // get closest task element
+        const taskid = task.getAttribute('id');
+        const taskproject = document.getElementById('taskproject').value.trim();
+        removeTask(taskproject, taskid); // remove task from local storage
+        task.remove(); // remove task from DOM
+    }
+});

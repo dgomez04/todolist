@@ -19,9 +19,10 @@ export default class Project {
         return this.tasks;
     }
     
-    //remove tasks from project
-    removeTask(task) {
-        this.tasks.splice(this.tasks.indexOf(task), 1);
+    //remove tasks from project based on id
+    removeTask(taskid) {
+        this.tasks = this.tasks.filter(task => task.id != taskid);
     }
+
 }
 
