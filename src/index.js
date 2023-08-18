@@ -69,3 +69,31 @@ document.getElementById('create-task').addEventListener('click', (e) => {
         }
     }
 });
+
+const modal = document.getElementById('task-modal');
+const modalTitle = document.getElementById('modal-title');
+const modalDescription = document.getElementById('modal-description');
+const modalPriority = document.getElementById('modal-priority');
+const modalDueDate = document.getElementById('modal-duedate');
+const closeButton = modal.querySelector('.close');
+
+document.getElementById('tasks').addEventListener('click', (e) => {
+    if (e.target.classList.contains('modalbutton')) {
+        const taskElement = e.target.closest('.task');
+        const taskTitle = taskElement.querySelector('h3 a').textContent;
+        const taskDescription = taskElement.dataset.taskdescription;
+        const taskPriority = taskElement.dataset.taskpriority;
+        const taskDueDate = taskElement.querySelector('p').textContent;
+
+        modalTitle.textContent = taskTitle;
+        modalDescription.textContent = `Description: ${taskDescription}`;
+        modalPriority.textContent = `Priority: ${taskPriority}`;
+        modalDueDate.textContent = `Due Date: ${taskDueDate}`;
+
+        modal.style.display = 'block';
+    }
+});
+
+closeButton.addEventListener('click', () => {
+    modal.style.display = 'none';
+});

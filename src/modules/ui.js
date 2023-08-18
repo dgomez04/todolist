@@ -61,16 +61,14 @@ export function addTaskElement(task) {
 
     taskElement.setAttribute('id', task.id);
     taskElement.setAttribute('name', task.title);
+    taskElement.setAttribute('data-taskdescription', task.description);
+    taskElement.setAttribute('data-taskpriority', task.priority); 
     taskElement.classList.add('task');
 
     taskElement.innerHTML = `
-    <h3>${task.title}</h3>
-    <p>${task.description}</p>
-    <p>${task.priority}</p>
+    <h3><a href=# class="modalbutton">${task.title}</a></h3>
     <p>${task.dueDate}</p>
     `
     taskList.appendChild(taskElement);
 }
 
-// make a module to make opacity of create tasks from 0 to 1 when the first project is clicked
-// in order to avoid tasks with no project assigned to them
