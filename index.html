@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="main.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <title>todo list</title>
+</head>
+<body>
+    <!-- create a container, make a sidebar-->
+    <div class="container">
+        <div class="sidebar">
+            <h1 id="app-title">todo list</h1>
+            
+            <div class="projectscontainer">
+                <div id="projects"> 
+                    <!--add projects dinamically-->
+                    
+                </div>
+
+                    <form id="create-project" method="post">
+                        <input type="text" name="projectname" id="projectname">
+                        <div class="project-buttons">
+                            <button type="submit">Add</button>
+                            <button type="reset">Cancel</button> 
+                        </div>
+                    </form>
+            </div>
+        </div> 
+
+        <div class="maincontainer"> <!-- make it so that it saves the project id somewhere here-->
+            <h1 id="project-title"></h1>
+            <div id="tasks">
+                <!--add tasks dinamically-->
+               
+            </div>
+            <form id="create-task" method="post">
+                <input type="hidden" name="taskproject" id="taskproject">
+                <input type="text" name="tasktitle" id="tasktitle">
+                <input type="text" name="taskdescription" id="taskdescription">
+                <!-- make a select button with options low, medium, and high for priority-->
+                <select name="taskpriority" id="taskpriority">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+                <input type="date" name="taskdate" id="taskdate">
+                <button type="submit">Add</button>
+                <button type="reset">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- working on modals design -->
+    <div id="task-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-title"></h2>
+            <p id="modal-description"></p>
+            <p id="modal-priority"></p>
+            <p id="modal-duedate"></p>
+        </div>
+    </div>
+</body>
+</html>
+
