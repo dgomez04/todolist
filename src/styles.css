@@ -49,20 +49,85 @@
     opacity: 0.8;
 }
 
+#project-title {
+    font-size: 32px;
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    font-weight: 700;
+    background: linear-gradient(to right, #4A55A2, #7895CB, #A0BFE0, #C5DFF8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 #tasks {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
+    padding-top: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease; /* Add transition property */
+    margin-bottom: 15px;
 }
 
 .task {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    padding: 10px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
 }
 
+.task:hover {
+    background-color: #F5F5F5;
+}
+
+.task h3 {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.task a {
+    text-decoration: none;
+    background: linear-gradient(to right, #3393d9 0%, #3393d9 0%, #3393d9 21%, #3282a9 52%, #285a73 78%, #285a73 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: color 0.3s ease;
+}
+
+.task a:hover {
+ opacity: 0.8;
+}
+
+.task p {
+    font-size: 14px;
+    color: #888888;
+    margin: 0;
+}
+
+.remove-task {
+    background-color: #FF4136;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.remove-task:hover {
+    background-color: #D1392F;
+}
+ 
+
 .sidebar {
-    background-color: #FFFFFF;
+    background-color: #F5F5F5;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     grid-column: 1;
     padding: 20px 0px 0px 20px;
@@ -75,8 +140,10 @@ a {
 
 .maincontainer {
     grid-column: 2;
-    background-color: lightblue;
+    background-color: #FFFFFF;
 }
+
+/* ... Other styles ... */
 
 .modal {
     display: none;
@@ -94,7 +161,7 @@ a {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
+    background-color: #FFFFFF;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
@@ -108,18 +175,24 @@ a {
     right: 10px;
     font-size: 20px;
     cursor: pointer;
+    color: #333333; /* Change the color */
 }
 
 #modal-title {
     font-size: 24px;
     margin-bottom: 10px;
+    color: #333333; /* Change the color */
 }
 
 #modal-description,
 #modal-priority,
 #modal-duedate {
     margin-bottom: 5px;
+    color: #555555; /* Change the color */
 }
+
+/* ... Other styles ... */
+
 
 #create-project {
     display: flex;
@@ -173,3 +246,56 @@ a {
     background: linear-gradient(to right, #999, #666);
 }
 
+
+#create-task {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    background-color: #FDFDFD; /* Slightly darker white */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#create-task input,
+#create-task select {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#create-task input[type="date"] {
+    padding: 6px;
+}
+
+#create-task select {
+    max-width: 100px;
+}
+
+#create-task button {
+    background: linear-gradient(to right, #0074d9, #2e88c1);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 16px;
+    font-weight: 500 ;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#create-task button[type="reset"] {
+    background: linear-gradient(to right, #ccc, #999);
+    color: #333;
+    margin-left: 5px;
+}
+
+#create-task button:hover {
+    background: linear-gradient(to right, #0056b3, #2e73a3);
+}
+
+#create-task button[type="reset"]:hover {
+    background: linear-gradient(to right, #999, #666);
+}
